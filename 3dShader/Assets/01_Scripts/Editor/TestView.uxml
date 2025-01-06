@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:Toggle label="HasName?" value="false" binding-path="hasName" name="HasNameToggle" />
+    <engine:TextField label="MyName" placeholder-text="filler text" binding-path="myName" name="MyNameInput" style="display: none;" />
+    <engine:IntegerField label="MyInt" value="42" binding-path="myInt" name="MyIntInput" />
+    <engine:FloatField label="MyFloat" value="42.2" binding-path="myFloat" name="MyFloatInput" />
+</engine:UXML>
