@@ -1312,6 +1312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916243261}
   - component: {fileID: 1916243260}
+  - component: {fileID: 1916243262}
   m_Layer: 0
   m_Name: TestEditor
   m_TagString: Untagged
@@ -1331,6 +1332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bdf32cef775e5242a7600ff1d0bfdcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
   hasName: 0
   myName: 
   myInt: 0
@@ -1350,6 +1352,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1916243262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916243259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1192fd7fbc2eb9d49a5a744a048db4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStats:
+  - defaultValue: 0
+    image: {fileID: 0}
+    isShow: 0
+    statName: 
+  - defaultValue: 0
+    image: {fileID: 0}
+    isShow: 0
+    statName: 
 --- !u!1 &2015625085
 GameObject:
   m_ObjectHideFlags: 0
