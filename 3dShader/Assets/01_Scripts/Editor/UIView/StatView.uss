@@ -56,3 +56,7 @@
     border-right-color: rgb(255, 255, 255);
     border-top-color: rgb(255, 255, 255);
 }
+
+.container.select {
+    background-color: rgb(85, 85, 85);
+}

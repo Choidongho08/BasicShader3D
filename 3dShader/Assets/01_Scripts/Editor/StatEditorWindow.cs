@@ -15,6 +15,8 @@ public class StatEditorWindow : EditorWindow
     private ScrollView _listScrollView;
     private VisualElement _inspector;
     private Editor _cachedEditor;
+    private bool _isSelect;
+    private StatVIewUI _selectedItem = null;
 
     [MenuItem("Tools/StatEditor")]
     public static void ShowWindow()
@@ -69,31 +71,61 @@ public class StatEditorWindow : EditorWindow
     private void InitializeTable(VisualElement root)
     {
         _listScrollView = root.Q<ScrollView>("ListScrollView");
-        _listScrollView.Clear();
-
         _inspector = root.Q<VisualElement>("Inspector");
-        _inspector.Clear();
+        
+        RefreshUI();
+    }
 
-        foreach(StatSO stat in _statDatabase.table)
+    private void HandleItemDelete(StatVIewUI target)
+    {
+        if (EditorUtility.DisplayDialog("Delete", "Are u sure?", "Yes", "No"))
+        {
+            string assetPath = AssetDatabase.GetAssetPath(target.targetStat);
+            AssetDatabase.DeleteAsset(assetPath);
+            //DB테이블에서 제거
+            _statDatabase.table.Remove(target.targetStat);
+            // 저장하기 전 뭘 저장할지 알려주는 SetDirty작업이 있어야함
+            EditorUtility.SetDirty(_statDatabase);
+            AssetDatabase.SaveAssets();
+
+            RefreshUI();
+        }
+    }
+
+    private void RefreshUI()
+    {
+        _listScrollView.Clear();
+        _inspector.Clear();
+        foreach (StatSO stat in _statDatabase.table)
         {
             TemplateContainer statViewUI = _statViewUI.Instantiate();
             _listScrollView.Add(statViewUI);
 
-            StatVIewUI statView = new StatVIewUI(statViewUI,stat);
+            StatVIewUI statView = new StatVIewUI(statViewUI, stat);
 
             statView.OnSelect += HandleItemSelect;
+            statView.OnDelete += HandleItemDelete;
         }
     }
 
     private void HandleItemSelect(StatVIewUI selectUI)
-    {
+    {   
         Editor.CreateCachedEditor(selectUI.targetStat, null, ref _cachedEditor);
         VisualElement statInspector = _cachedEditor.CreateInspectorGUI();
 
         SerializedObject so = new SerializedObject(selectUI.targetStat);
         statInspector.Bind(so);
 
+        statInspector.TrackSerializedObjectValue(so, (target) =>
+        {
+            selectUI.RefreshUI();
+        });
+
         _inspector.Clear();
         _inspector.Add(statInspector);
+
+        _selectedItem?.SetSelection(false);
+        _selectedItem = selectUI;
+        _selectedItem.SetSelection(true);
     }
 }

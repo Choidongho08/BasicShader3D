@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:TextField label="StatName" placeholder-text="filler text" binding-path="statName" name="StatNameField" is-delayed="true" />
+    <engine:TextField label="Description" placeholder-text="filler text" binding-path="description" />
+    <engine:TextField label="DisplayName" placeholder-text="filler text" binding-path="displayName" />
+    <editor:ObjectField label="Icon" type="UnityEngine.Sprite, UnityEngine.CoreModule" binding-path="icon" />
+    <engine:Toggle label="IsPercent" binding-path="IsPercent" />
+</engine:UXML>
